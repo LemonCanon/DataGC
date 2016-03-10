@@ -50,4 +50,87 @@
 #body_gyro_[x-z] = angularVelAVG[x-z], angularVelSTD[x-z]
 #total_acc[x-y] = totalaccelleration[x-z]
 #add a variable indicating the original data set: Train or Test
-    
+
+#read from "UCI HAR Dataset/test" & "UCI HAR Dataset/train"
+#for each measurment dataset run apply(data, 1, sd) and apply(data, 1, mean) and create columns from those variables.
+
+#clear the global environment
+rm(list = ls())
+
+#load all data
+#test data:
+test.X <- read.table("UCI HAR Dataset/test/X_test.txt")
+test.Y <- read.table("UCI HAR Dataset/test/Y_test.txt")
+test.subject <- read.table("UCI HAR Dataset/test/subject_test.txt")
+test.accX <- read.table("UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt")
+test.accY <- read.table("UCI HAR Dataset/test/Inertial Signals/body_acc_y_test.txt")
+test.accZ <- read.table("UCI HAR Dataset/test/Inertial Signals/body_acc_z_test.txt")
+test.gyroX <-  read.table("UCI HAR Dataset/test/Inertial Signals/body_gyro_x_test.txt")
+test.gyroY <- read.table("UCI HAR Dataset/test/Inertial Signals/body_gyro_y_test.txt")
+test.gyroZ <- read.table("UCI HAR Dataset/test/Inertial Signals/body_gyro_z_test.txt")
+test.totaccX <- read.table("UCI HAR Dataset/test/Inertial Signals/total_acc_x_test.txt")
+test.totaccY <- read.table("UCI HAR Dataset/test/Inertial Signals/total_acc_y_test.txt")
+test.totaccZ <- read.table("UCI HAR Dataset/test/Inertial Signals/total_acc_z_test.txt")
+
+#train data: 
+train.X <- read.table("UCI HAR Dataset/train/X_train.txt")
+train.Y <- read.table("UCI HAR Dataset/train/Y_train.txt")
+train.subject <- read.table("UCI HAR Dataset/train/subject_train.txt")
+train.accX <- read.table("UCI HAR Dataset/train/Inertial Signals/body_acc_x_train.txt")
+train.accY <- read.table("UCI HAR Dataset/train/Inertial Signals/body_acc_y_train.txt")
+train.accZ <- read.table("UCI HAR Dataset/train/Inertial Signals/body_acc_z_train.txt")
+train.gyroX <-  read.table("UCI HAR Dataset/train/Inertial Signals/body_gyro_x_train.txt")
+train.gyroY <- read.table("UCI HAR Dataset/train/Inertial Signals/body_gyro_y_train.txt")
+train.gyroZ <- read.table("UCI HAR Dataset/train/Inertial Signals/body_gyro_z_train.txt")
+train.totaccX <- read.table("UCI HAR Dataset/train/Inertial Signals/total_acc_x_train.txt")
+train.totaccY <- read.table("UCI HAR Dataset/train/Inertial Signals/total_acc_y_train.txt")
+train.totaccZ <- read.table("UCI HAR Dataset/train/Inertial Signals/total_acc_z_train.txt")
+
+sumUp <- function(data){
+    avg <- apply(data, 1, mean)
+    stan <- apply(data, 1, sd)
+    result <- data.frame(avg, stan)
+    return(result)
+}
+
+#summarize measurement data by SD and Mean
+test.measurement <- data.frame(
+    X.sumUp = sumUp(test.X),
+    accX.sumUp = sumUp(test.accX),
+    accY.sumUp = sumUp(test.accY),
+    accZ.sumUp = sumUp(test.accZ),
+    gyroX.sumUp = sumUp(test.gyroX),
+    gyroY.sumUp = sumUp(test.gyroY),
+    gyroZ.sumUp = sumUp(test.gyroZ),
+    totaccX.sumUp = sumUp(test.totaccX),
+    totaccY.sumUp = sumUp(test.totaccY),
+    totaccZ.sumUp = sumUp(test.totaccZ)
+)
+
+train.measurement <- data.frame(
+    X.sumUp = sumUp(train.X),
+    accX.sumUp = sumUp(train.accX),
+    accY.sumUp = sumUp(train.accY),
+    accZ.sumUp = sumUp(train.accZ),
+    gyroX.sumUp = sumUp(train.gyroX),
+    gyroY.sumUp = sumUp(train.gyroY),
+    gyroZ.sumUp = sumUp(train.gyroZ),
+    totaccX.sumUp = sumUp(train.totaccX),
+    totaccY.sumUp = sumUp(train.totaccY),
+    totaccZ.sumUp = sumUp(train.totaccZ)
+)
+
+test.data <- data.frame(subject = test.subject, 
+                        activity = test.Y, 
+                        dataSet = "test", 
+                        test.measurement)
+train.data <- data.frame(subject = train.subject, 
+                         activity = train.Y, 
+                         dataSet = "train",
+                         train.measurement)
+currentVar <- ls()
+
+final.data <- c( test.data, train.data)
+
+rm(list= currentVar) #clear excess data used to construct the data frames
+
