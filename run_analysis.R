@@ -95,29 +95,29 @@ sumUp <- function(data){
 
 #summarize measurement data by SD and Mean
 test.measurement <- data.frame(
-    X.sumUp = sumUp(test.X),
-    accX.sumUp = sumUp(test.accX),
-    accY.sumUp = sumUp(test.accY),
-    accZ.sumUp = sumUp(test.accZ),
-    gyroX.sumUp = sumUp(test.gyroX),
-    gyroY.sumUp = sumUp(test.gyroY),
-    gyroZ.sumUp = sumUp(test.gyroZ),
-    totaccX.sumUp = sumUp(test.totaccX),
-    totaccY.sumUp = sumUp(test.totaccY),
-    totaccZ.sumUp = sumUp(test.totaccZ)
+    X = sumUp(test.X),
+    accX = sumUp(test.accX),
+    accY = sumUp(test.accY),
+    accZ = sumUp(test.accZ),
+    gyroX = sumUp(test.gyroX),
+    gyroY = sumUp(test.gyroY),
+    gyroZ = sumUp(test.gyroZ),
+    totaccX = sumUp(test.totaccX),
+    totaccY = sumUp(test.totaccY),
+    totaccZ = sumUp(test.totaccZ)
 )
 
 train.measurement <- data.frame(
-    X.sumUp = sumUp(train.X),
-    accX.sumUp = sumUp(train.accX),
-    accY.sumUp = sumUp(train.accY),
-    accZ.sumUp = sumUp(train.accZ),
-    gyroX.sumUp = sumUp(train.gyroX),
-    gyroY.sumUp = sumUp(train.gyroY),
-    gyroZ.sumUp = sumUp(train.gyroZ),
-    totaccX.sumUp = sumUp(train.totaccX),
-    totaccY.sumUp = sumUp(train.totaccY),
-    totaccZ.sumUp = sumUp(train.totaccZ)
+    X = sumUp(train.X),
+    accX = sumUp(train.accX),
+    accY = sumUp(train.accY),
+    accZ = sumUp(train.accZ),
+    gyroX = sumUp(train.gyroX),
+    gyroY = sumUp(train.gyroY),
+    gyroZ = sumUp(train.gyroZ),
+    totaccX = sumUp(train.totaccX),
+    totaccY = sumUp(train.totaccY),
+    totaccZ = sumUp(train.totaccZ)
 )
 
 test.data <- data.frame(subject = test.subject, 
@@ -128,9 +128,18 @@ train.data <- data.frame(subject = train.subject,
                          activity = train.Y, 
                          dataSet = "train",
                          train.measurement)
-currentVar <- ls()
 
-final.data <- c( test.data, train.data)
 
-rm(list= currentVar) #clear excess data used to construct the data frames
+#extract activity names
+act <- read.table("UCI HAR Dataset/activity_labels.txt")
+act <- as.character(act[,2])
 
+library(dplyr)
+final.data <- merge( test.data, train.data, all = TRUE) 
+colnames(final.data)[1] <- "subjectID"
+colnames(final.data)[2] <- "activity"
+final.data <- mutate(final.data, activity = as.factor(final.data[,2]))
+levels(final.data[,2]) <- act 
+
+write.csv(final.data, file = "cleaned_UCI_HAR_Dataset.csv", row.names = FALSE)
+rm(list = ls())
