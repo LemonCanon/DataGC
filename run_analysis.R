@@ -89,5 +89,5 @@ colnames(final.data)[2] <- "activity"
 final.data <- mutate(final.data, activity = as.factor(final.data[,2]))
 levels(final.data[,2]) <- act 
 
-write.csv(final.data, file = "cleaned_UCI_HAR_Dataset.csv", row.names = FALSE)
+write.table(final.data, file = "cleaned_UCI_HAR_Dataset.txt", row.names = FALSE)
 rm(list = ls())

@@ -10,7 +10,7 @@ The script "run_analysis" takes the data from the files:
 
 Details on the files are within "UCI HAR Dataset/README.txt"
 	
-The script produces the cleaned_UCI_HAR_Dataset.csv a dataset with the 
+The script produces the cleaned_UCI_HAR_Dataset.txt a dataset with the 
 following headers:
 
 "subjectID"    

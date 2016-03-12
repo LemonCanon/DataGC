@@ -4,7 +4,7 @@ by RP 12-3-2016
 
 ### contents
 * UCI HAR Dataset
-* cleaned_UCI_HAR_Dataset.csv
+* cleaned_UCI_HAR_Dataset.txt
 * CodeBook.txt
 * README.md
 * run_analysis.R
