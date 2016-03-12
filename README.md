@@ -18,5 +18,5 @@ resulting table with the identification sets (the subject and activity).
 
 Before combining the two seperate datasets (train and test) it ads a variable indicating 
 which set it originated from. Once the data is combined it changes the activity ID from a 
-number into a factor containing a discription of the activity (using the list provided in
-the data files)
+number into a factor containing a discription of the activity (using the list of activity 
+names provided in the data files)
