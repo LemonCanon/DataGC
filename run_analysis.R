@@ -45,6 +45,11 @@ comb.data <- merge(test.data, train.data, all = TRUE)
 #clean up the data names by romoving the . from the extracted names
 colnames(comb.data) <- gsub("\\.","",colnames(comb.data))
 
+#Change the first letter in "std" and "mean" to caps
+
+colnames(comb.data) <- sub("mean", "Mean", colnames(comb.data))
+colnames(comb.data) <- sub("std", "Std", colnames(comb.data))
+
 #change the dataset names frome the defualt
 colnames(comb.data)[1:2] <- c("subjectID", "activity")
 
