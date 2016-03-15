@@ -64,7 +64,7 @@ levels(comb.data[,2]) <- as.character(active[,2])
 arrange(comb.data, subjectID, activity, dataset)
 
 #write the table to file
-write.table(comb.data, "cleaned_UCI_HAR_Dataset.txt", row.names = FALSE)
+#write.table(comb.data, "cleaned_UCI_HAR_Dataset.txt", row.names = FALSE)
 
 #clear the global environment
-rm(list = ls())
+#rm(list = ls())

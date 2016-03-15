@@ -4,45 +4,79 @@ Codebook
 The script "run_analysis" takes the data from the files:
 
 	UCI HAR Dataset/test
-	UCI HAR Dataset/test/Inertial Signals
 	UCI HAR Dataset/train
-	UCI HAR Dataset/train/Inertial Signals
 
 Details on the files are within "UCI HAR Dataset/README.txt"
 	
 The script produces the cleaned_UCI_HAR_Dataset.txt a dataset with the 
 following headers:
 
-"subjectID"    
-	Numbers 1 - 30 indicating which of the 30 volunteers the measurements were collected from.  
-"activity" 
-    A factor indicating which action the subject was performing for the measurements.
-"dataSet" 
-	A factor indicating which dataset the entry originated from, either train or test.
-"X.avg" 
-	The average of a 561-feature vector with time and frequency domain variables.
-"X.stan"
-	The standard deviation of a 561-feature vector with time and frequency domain variables
+"subjectID"                
+	integers 1 to 30 indicating which volunteer was measured for the observation.
 
-The following 6 headers are the averages and standard deviations of the body acceleration signal obtained by subtracting the gravity from the total
-acceleration, the measurements are in the axis x, y and z. 
+"activity"
+	factor w/6 levels indicating which activity was observed
+		"WALKING" "WALKING_UPSTAIRS" "WALKING_DOWNSTAIRS" "SITTING" "STANDING" "LAYING"     
 
-	"accX.avg" "accX.stan"  
-	"accY.avg" "accY.stan"
-	"accZ.avg" "accZ.stan"
-	
-The following 6 headers are the averages and standard deviations of the angular velocity vector measured by the gyroscope for each window sample in 
-each observation. The units are radians/second.
-    
-	"gyroX.avg" "gyroX.stan"
-	"gyroY.avg" "gyroY.stan"   
-	"gyroZ.avg" "gyroZ.stan" 
+"dataset" 
+	factor w/2 levels indicating which dataset the observation originated from
+		"test" "train"
 
-The following 6 headers are the means and standard deviations for the acceleration signal from the 
-smartphone accelerometer x, y, and z axis in standard gravity units 'g'. Each original entry contained 
-an 128 element vector.  
-	
-	"totaccX.avg" "totaccX.stan"
-	"totaccY.avg" "totaccY.stan" 
-	"totaccZ.avg" "totaccZ.stan"
+The following headers come from the UCI HAR Dataset/test/X_test.txt and UCI HAR Dataset/train/X_train.txt files and are all 
+numeric values each representing means and standard deviations taken from signals from the accelerometer and gyroscope 3-axial
+raw signals tAcc-XYZ and tGyro-XYZ. further details available in UCI HAR Dataset/features_info.txt
+
+For readability I have grouped similar headers together though they still appear in the same order as they do in the table
+reading from left to right.
+
+"tBodyAccMeanX"		"tBodyAccMeanY" 	"tBodyAccMeanZ"
+"tBodyAccStdX" 		"tBodyAccStdY" 		"tBodyAccStdZ"
+
+"tGravityAccMeanX" 	"tGravityAccMeanY" 	"tGravityAccMeanZ"     
+"tGravityAccStdX" 	"tGravityAccStdY" 	"tGravityAccStdZ"
+
+"tBodyAccJerkMeanX" "tBodyAccJerkMeanY" "tBodyAccJerkMeanZ"       
+"tBodyAccJerkStdX" 	"tBodyAccJerkStdY" 	"tBodyAccJerkStdZ"
+
+"tBodyGyroMeanX" 	"tBodyGyroMeanY" 	"tBodyGyroMeanZ"          
+"tBodyGyroStdX" 	"tBodyGyroStdY" 	"tBodyGyroStdZ"
+
+"tBodyGyroJerkMeanX" "tBodyGyroJerkMeanY" "tBodyGyroJerkMeanZ"      
+"tBodyGyroJerkStdX" "tBodyGyroJerkStdY" "tBodyGyroJerkStdZ"
+
+"tBodyAccMagMean"         
+"tBodyAccMagStd"
+
+"tGravityAccMagMean"      
+"tGravityAccMagStd"
+
+"tBodyAccJerkMagMean"     
+"tBodyAccJerkMagStd"
+
+"tBodyGyroMagMean"        
+"tBodyGyroMagStd"
+
+"tBodyGyroJerkMagMean"    
+"tBodyGyroJerkMagStd"
+
+"fBodyAccMeanX" 	"fBodyAccMeanY" 	"fBodyAccMeanZ"           
+"fBodyAccStdX" 		"fBodyAccStdY" 		"fBodyAccStdZ" 
+
+"fBodyAccJerkMeanX" "fBodyAccJerkMeanY" "fBodyAccJerkMeanZ"       
+"fBodyAccJerkStdX"  "fBodyAccJerkStdY"  "fBodyAccJerkStdZ"
+
+"fBodyGyroMeanX"    "fBodyGyroMeanY"    "fBodyGyroMeanZ"          
+"fBodyGyroStdX"     "fBodyGyroStdY"     "fBodyGyroStdZ"
+
+"fBodyAccMagMean"         
+"fBodyAccMagStd"           
+
+"fBodyBodyAccJerkMagMean" 
+"fBodyBodyAccJerkMagStd"   
+
+"fBodyBodyGyroMagMean"    
+"fBodyBodyGyroMagStd" 
+
+"fBodyBodyGyroJerkMagMean"
+"fBodyBodyGyroJerkMagStd" 
 
