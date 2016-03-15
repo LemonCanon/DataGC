@@ -23,7 +23,7 @@ following headers:
 		"test" "train"
 
 The following headers come from the UCI HAR Dataset/test/X_test.txt and UCI HAR Dataset/train/X_train.txt files and are all 
-numeric values each representing means and standard deviations taken from signals from the accelerometer and gyroscope 3-axial
+numeric values each representing means and standard deviations (Std) taken from signals from the accelerometer and gyroscope 3-axial
 raw signals tAcc-XYZ and tGyro-XYZ. further details available in UCI HAR Dataset/features_info.txt
 
 For readability I have grouped similar headers together though they still appear in the same order as they do in the table

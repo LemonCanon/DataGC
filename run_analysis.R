@@ -67,4 +67,8 @@ arrange(comb.data, subjectID, activity, dataset)
 write.table(comb.data, "cleaned_UCI_HAR_Dataset.txt", row.names = FALSE)
 
 #clear the global environment
-rm(list = ls())
+#rm(list = ls())
+
+#todo gather data on SubjectID
+#get mean of each column based on subjectID
+#output second dataset
