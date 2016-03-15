@@ -28,6 +28,9 @@ raw signals tAcc-XYZ and tGyro-XYZ. further details available in UCI HAR Dataset
 
 For readability I have grouped similar headers together though they still appear in the same order as they do in the table
 reading from left to right.
+all values have been normalized to values between -1.0 and 1.0
+t. denotes time domain signals
+f. denotes frequency domain signals
 
 "tBodyAccMeanX"		"tBodyAccMeanY" 	"tBodyAccMeanZ"
 "tBodyAccStdX" 		"tBodyAccStdY" 		"tBodyAccStdZ"
