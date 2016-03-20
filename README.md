@@ -9,22 +9,40 @@ by RP 12-3-2016
 * README.md
 * run_analysis.R
 
+### Inputs
+Data:
+	"UCI HAR Dataset/test/X_test.txt"
+	"UCI HAR Dataset/test/Y_test.txt"
+	"UCI HAR Dataset/test/subject_test.txt"
+	
+	"UCI HAR Dataset/train/X_train.txt"
+	"UCI HAR Dataset/train/Y_train.txt"
+	"UCI HAR Dataset/train/subject_train.txt"
+Labels:
+	"UCI HAR Dataset/features.txt"
+	"UCI HAR Dataset/activity_labels.txt"
+	
+###	Outputs
+
+	"cleaned_UCI_HAR_Dataset.txt"
+	"UCI_HAR_Dataset_bySubject.txt"
+	
 ### explanation
 The data used in this project originated from:
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 and was downloaded on Mar 8, 2016
 
-The UCI HAR Dataset was the dataset supplied to perform this data cleaning assignment on
-the data is explained within UCI HAR Dataset/README.txt . The cleaned_UCI_HAR_Dataset.txt
-is a cleaned data table created by the run_analysis.R script. It reads the data files and
-then assembles the resulting table with the identification sets (the subject and activity)
-and data containing mean and std from the X_*.txt file. 
+First the script run_analysis.R reads the input data. The script then selects the rows containing standard deviation and
+mean values using the labels for the X_*.txt data in the features.txt file. The script then combines the X_*.txt, Y_*.txt
+and subject_*.txt  of each dataset and adds the "dataset" column containing "test" and "train" factors indicating which 
+dataset a specific data observation came from. 
 
-Before combining the two seperate datasets (train and test) it adds a variable indicating 
-which set an observation originated from. Once the data is combined it changes the activity 
-ID from a number into a factor containing a discription of the activity (using the list of 
-activity names provided in the data files). The headers from X_*.txt are cleaned by removing 
-"."s from the text and applying camel case to increase readability.
+Then the script combines the two separate datasets into a single table. The script then cleans the headers by removing ".",
+changing them to camel caps (to increase readability without making the label longer) and where "bodybody" occurs it reduces
+it to "body". The activity column is changed from a numeric value to corisponding activity names found in activity_labels.txt.
+The script then outputs "cleaned_UCI_HAR_Dataset.txt".
 
-Further discription of the dataset can be found in CodeBook.txt and the README.txt and 
-features_info.txt files found in DataGC/UCI HAR Dataset
+The script continues on to group the data by subjectID and activity and then takes the mean of each variable for each (the
+script removes the dataset variable from this new table because it is not numeric). The script then outputs the new data as
+"UCI_HAR_Dataset_bySubject.txt"
+

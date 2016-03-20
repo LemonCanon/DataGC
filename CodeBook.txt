@@ -8,8 +8,8 @@ The script "run_analysis" takes the data from the files:
 
 Details on the files are within "UCI HAR Dataset/README.txt"
 	
-The script produces the cleaned_UCI_HAR_Dataset.txt a dataset with the 
-following headers:
+The script produces the cleaned_UCI_HAR_Dataset.txt and UCI_HAR_Dataset_bySubject.txt that use the
+following headers (UCI_HAR_Dataset_bySubject.txt does not use "activity" or "dataset"):
 
 "subjectID"                
 	integers 1 to 30 indicating which volunteer was measured for the observation.
@@ -26,6 +26,9 @@ The following headers come from the UCI HAR Dataset/test/X_test.txt and UCI HAR 
 numeric values each representing means and standard deviations (Std) taken from signals from the accelerometer and gyroscope 3-axial
 raw signals tAcc-XYZ and tGyro-XYZ. further details available in UCI HAR Dataset/features_info.txt
 
+In UCI_HAR_Dataset_bySubject.txt each column represents the mean of all the measurements collected from a subject performing each 
+activity.
+
 For readability I have grouped similar headers together though they still appear in the same order as they do in the table
 reading from left to right.
 all values have been normalized to values between -1.0 and 1.0
@@ -38,14 +41,14 @@ f. denotes frequency domain signals
 "tGravityAccMeanX" 	"tGravityAccMeanY" 	"tGravityAccMeanZ"     
 "tGravityAccStdX" 	"tGravityAccStdY" 	"tGravityAccStdZ"
 
-"tBodyAccJerkMeanX" "tBodyAccJerkMeanY" "tBodyAccJerkMeanZ"       
+"tBodyAccJerkMeanX" 	"tBodyAccJerkMeanY" 	"tBodyAccJerkMeanZ"       
 "tBodyAccJerkStdX" 	"tBodyAccJerkStdY" 	"tBodyAccJerkStdZ"
 
 "tBodyGyroMeanX" 	"tBodyGyroMeanY" 	"tBodyGyroMeanZ"          
 "tBodyGyroStdX" 	"tBodyGyroStdY" 	"tBodyGyroStdZ"
 
-"tBodyGyroJerkMeanX" "tBodyGyroJerkMeanY" "tBodyGyroJerkMeanZ"      
-"tBodyGyroJerkStdX" "tBodyGyroJerkStdY" "tBodyGyroJerkStdZ"
+"tBodyGyroJerkMeanX" 	"tBodyGyroJerkMeanY" 	"tBodyGyroJerkMeanZ"      
+"tBodyGyroJerkStdX" 	"tBodyGyroJerkStdY" 	"tBodyGyroJerkStdZ"
 
 "tBodyAccMagMean"         
 "tBodyAccMagStd"
@@ -65,21 +68,21 @@ f. denotes frequency domain signals
 "fBodyAccMeanX" 	"fBodyAccMeanY" 	"fBodyAccMeanZ"           
 "fBodyAccStdX" 		"fBodyAccStdY" 		"fBodyAccStdZ" 
 
-"fBodyAccJerkMeanX" "fBodyAccJerkMeanY" "fBodyAccJerkMeanZ"       
-"fBodyAccJerkStdX"  "fBodyAccJerkStdY"  "fBodyAccJerkStdZ"
+"fBodyAccJerkMeanX" 	"fBodyAccJerkMeanY" 	"fBodyAccJerkMeanZ"       
+"fBodyAccJerkStdX"  	"fBodyAccJerkStdY"  	"fBodyAccJerkStdZ"
 
-"fBodyGyroMeanX"    "fBodyGyroMeanY"    "fBodyGyroMeanZ"          
-"fBodyGyroStdX"     "fBodyGyroStdY"     "fBodyGyroStdZ"
+"fBodyGyroMeanX"    	"fBodyGyroMeanY"    	"fBodyGyroMeanZ"          
+"fBodyGyroStdX"     	"fBodyGyroStdY"     	"fBodyGyroStdZ"
 
 "fBodyAccMagMean"         
 "fBodyAccMagStd"           
 
-"fBodyBodyAccJerkMagMean" 
+"fBodyAccJerkMagMean" 
 "fBodyBodyAccJerkMagStd"   
 
-"fBodyBodyGyroMagMean"    
+"fBodyGyroMagMean"    
 "fBodyBodyGyroMagStd" 
 
-"fBodyBodyGyroJerkMagMean"
-"fBodyBodyGyroJerkMagStd" 
+"fBodyGyroJerkMagMean"
+"fBodyGyroJerkMagStd" 
 

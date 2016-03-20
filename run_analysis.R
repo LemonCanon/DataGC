@@ -49,6 +49,7 @@ colnames(comb.data) <- gsub("\\.","",colnames(comb.data))
 
 colnames(comb.data) <- sub("mean", "Mean", colnames(comb.data))
 colnames(comb.data) <- sub("std", "Std", colnames(comb.data))
+colnames(comb.data) <- sub("BodyBody", "Body", colnames(comb.data))
 
 #change the dataset names frome the defualt
 colnames(comb.data)[1:2] <- c("subjectID", "activity")
@@ -66,9 +67,12 @@ arrange(comb.data, subjectID, activity, dataset)
 #write the table to file
 write.table(comb.data, "cleaned_UCI_HAR_Dataset.txt", row.names = FALSE)
 
-#clear the global environment
-#rm(list = ls())
+#group by SubjectID and then summarise by each
+comb.data.byID <- group_by(comb.data, subjectID, activity) %>%
+        select(-(dataset)) %>%
+        summarise_each(funs(mean)) 
 
-#todo gather data on SubjectID
-#get mean of each column based on subjectID
 #output second dataset
+write.table(comb.data, "UCI_HAR_Dataset_bySubject.txt", row.names = FALSE)
+#clear the global environment
+rm(list = ls())
